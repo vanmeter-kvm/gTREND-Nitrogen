@@ -4,5 +4,5 @@ This repository contains the codes associated with the manuscript titled **"gTRE
 
 The gTREND-Nitrogen dataset provides a comprehensive, long-term (1930-2017) nitrogen (N) mass balance for the contiguous United States at a spatial resolution of 250 meters. This dataset integrates county-scale estimates of N fluxes with gridded land use and population data to estimate grid-scale surface fluxes of N, including fertilizer, atmospheric deposition, manure inputs, biological N fixation, crop N uptake, and population-based human waste.
 
-<img src="./Structure.png" style="zoom:80%;" />
+<img src="./Structure.svg" style="zoom:80%;" />
 
