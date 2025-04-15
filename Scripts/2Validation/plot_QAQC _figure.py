@@ -8,10 +8,9 @@ import geopandas as gpd
 import pandas as pd 
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from pylab import *
+
 import scipy
-p='G:/My Drive/schang68@uic.edu 2022-01-16 10 58/Downscale_2021/N Surplus Dataset Publication Files (2022-05-26)/QAQC/US Counties Fixed Geom v2/US Counties Fixed Geom v2/US_CountyShapefile_2017_fixed_v2.shp'
+p='./Data/COUNTY/US_county.gpkg'
  
 chang=gpd.read_file(p)
 chang=chang.set_index("GEOID")
@@ -25,7 +24,7 @@ def getzonalcolumns(year):
                  "pop{}mea".format(year), "atm{}mea".format(year), "sur{}mea".format(year)]
     return(com)
      
-trend_p="G:/My Drive/schang68@uic.edu 2022-01-16 10 58/Downscale_2021/N Surplus Dataset Publication Files (2022-05-26)/N Surplus Dataset Publication Files/"
+trend_p="./Data/TREND-N/"
 
 def readgroundtruth(index):
     if index==0:
@@ -110,56 +109,7 @@ for i in range(16):
     print(r2)
 axs[i].legend(loc="upper right")       
 
-'''
-save_p="G:/My Drive/schang68@uic.edu 2022-01-16 10 58/Downscale_2021/N Surplus Dataset Publication Files (2022-05-26)/Figures/"
-#fig.savefig(save_p+'QAQC.jpg', format='jpg', dpi=1500)   
-        
-fig, axs = plt.subplots(1,1, figsize=(3, 3), facecolor='w', edgecolor='k',linewidth=2)
-cmap = plt.get_cmap("copper", len(year_l))  
-for i in range(1):
-    gd=readgroundtruth(i)
-    chang=chang.reindex(gd.index.to_list())
- 
-    gdmax=readgroundtruth(i)
-    for j in range(len(year_l)):
-        year=str(year_l[j])
-        com=getzonalcolumns(year)
-        lim=gdmax["y{}".format(2010)].max()
 
-        axs.plot(gd["y{}".format(year)],chang[com[i]], ".", color=cmap(j),alpha=1,markersize=25,markeredgecolor='k',markeredgewidth=0.25 )
-        axs.plot([0,lim],[0,lim],'k--',linewidth=2)
-        axs.set_xlim([0,lim])
-        axs.set_ylim([0,lim])
-        axs.tick_params(axis='both', which='major', labelsize=11)
-        for axis in ['top','bottom','left','right']:
-            axs.spines[axis].set_linewidth(2)
-        
-plt.colorbar()  
-'''       
-#%%
-import shutil
-import os 
-p="D:/ShuyuChang/Downscale_P/gTREND-P/"
-p_save="D:/ShuyuChang/Downscale_P/gTREND-P_zipped/"
-i=1
-for file in os.listdir(p):
-    print(file)
-    if "Weathering" in file:
-        shutil.make_archive(base_name=p_save+file+".zip", format='zip', root_dir=p+file)
-        print("done")
-
-        
-        
-def count_files(directory):
-    return len([name for name in os.listdir(directory) if os.path.isfile(os.path.join(directory, name))])
-        
-for file in os.listdir(p):
-    print(file)
-    t=count_files(p+file)
-    print(t)
-    print("")
-    
-       
         
         
         
