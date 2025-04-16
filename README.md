@@ -33,29 +33,37 @@ Required Python packages for standard python files are: `geopandas`, `pandas`, `
 
   -`Scripts/1Downscale/1Develop_LU/`
 
-  * `1QGIS-LU.py`: Resample NLCD to 250m, calculate county agricultural and developed land use ratio, and generate binary rasters for ag/non-ag and developed/non-developed
+  * `1QGIS-LU.py`: Resample NLCD to 250m, calculate county agricultural/developed land use ratios, generate binary rasters (ag/non-ag, developed/non-developed)。
 
   -`Scripts/1Downscale/2Downscale_AgDev/`
 
   * `1Data_Preprocessing.py`: Convert .txt to .csv for further analysis
-  * `2Calculate_Nvalue_LU.py`: Calculate kg/ha-agland for agricultural N fluxes and calculate kg/ha-devland for non-ag fertilizer. 
-  * `3Check_Inf_Values.py`: Check the descrepencies between TREND-N V3 and land use data
-  * `4Generate_NVALUE_Shapefile.py`: Generate county-scale vector maps of ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAeCAMAAABqtKLHAAAAAXNSR0IArs4c6QAAALRQTFRFAAAAAAAAAAA6AABmADo6ADpmADqQAGZmAGa2OgAAOgA6OgBmOjoAOjo6OjqQOmZmOmaQOma2OpCQOpC2OpDbZgAAZgA6ZgBmZjoAZjo6ZjpmZmYAZmY6ZpC2ZpDbZrbbZrb/kDoAkGY6kJC2kJDbkLb/kNvbkNv/tmYAtmY6tmZmtpA6tpBmttv/tv//25A625Bm27Zm27aQ29uQ29u22////7Zm/7aQ/9uQ/9u2//+2///bOAEBNwAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAZdEVYdFNvZnR3YXJlAE1pY3Jvc29mdCBPZmZpY2V/7TVxAAABxklEQVRIS+1UaVODMBDNomLxPkDxLHhBWxVaJabJ//9f7tswHe2gow5+685Q0hy7L2/fQ6lVrBhQNiHKmAdNtPbcHx8moQGyVUHRX1Jlti8EZBU2PWbV4ZRizlfip7coY5swTJuA3b7C5ZkqmVKz3WOvlNkquP9x77Ti9mHTM62QVRk8MBF/DbO3rB7QCgscMRF/jVL0/jFAq4LBRK3zlIJdUZhJaX3Xw5/fEFbnZxRcK3cDGbK2eZCZNMiUzQnrIzrkO4tGF44qxV82OW5M5MEPVe0djEk9UCbita2ifgIyfuqi3L9q8Ec0ae41b/cYF+73uUqGJApzOdfU3myYxKs9D8okj8sHfl+rSaTQjHc5ZLPkkpqertYdHhAfxJIsY8ae8KC1OiqMOpqDzUDAqfk2NvEE+0vJq+JpVBX42IOnrQ7L6y7Tc3U3TuMZ2yIo5pcMjLHYZKhmew1qzEATI6vPwtc7gViFr7eM0Y1Rudo877TnhDaeJmijy+nghQm2p8+qjugA0CJaH/LZtygY6giA+VIyqGij7RF683VUIB1YHn8j4ur7j57LOetUVPHjqItpR/8/HX/bIX/dH4fL2SGr+F8G3gG3ATkcCMacuwAAAABJRU5ErkJggg==)
-  * `5QGIS-Generate_NVALUE_Raster.py`
-  * `6QGIS-Generate_Nvalue_raster_with_binary.py`
+  * `2Calculate_Nvalue_LU.py`: Calculate：（1）Nag,county (kg/ha-agland) for agricultural N fluxes； （2）Ndev,county (kg/ha-devland) for non-ag fertilizer
+  * `3Check_Inf_Values.py`:  Validate TREND-N V3 vs land use 
+  * `4Generate_NVALUE_Shapefile.py`: Generate county-scale vector maps 
+  * `5QGIS-Generate_NVALUE_Raster.py`: Rasterize those shapefiles to a 250-m grid scale. 
+  * `6QGIS-Generate_Nvalue_raster_with_binary.py`: Spatial allocation: （1） Agricultural N → ag land cells only；（2）Developed N → developed land cells only
 
   -`/Scripts/1Downscale/3Downscale_Humanwaste/`
 
-  * `1QGIS-POP_WARP.py`
-  * `2QGIS-POP_CLIP.py`
-  * `3Matlab-POPInterpolation.m`
-  * `4Matlab-POP_CONVERT_TO_KGHA.m`
-  * `5QGIS-WARP_TO_250M.py`
-  * `6Matlab- POP_FIX_GEOMETRY.m`
+  * `1QGIS-POP_WARP.py`: Convert .adf to .tif
+  * `2QGIS-POP_CLIP.py`: Clip population raster to county shapefile 
+  * `3Matlab-POPInterpolation.m`: Decadal population was linearly interpolated to obtain annual estimates of population. 
+  * `4Matlab-POP_CONVERT_TO_KGHA.m`: convert population pop/km2 to kg-N/ha
+  * `5QGIS-WARP_TO_250M.py`: Resample 1km to 250m
+  * `6Matlab- POP_FIX_GEOMETRY.m`: Geometry correction
 
 * **Technical validation**
 
+  -`/Scripts/2Validation/`
+
+  * `Figure6.py` : Compare county-scale TREND-Nitrogen v3.0 and the gridded gTREND-N, re-aggregated to the county scale
+
 * **Extract basin-averaged N fluxes based on gTREND-N **
+
+  -`/Scripts/3Application/`
+
+  * `EXTRACT_gTREND.py`
 
   
 
