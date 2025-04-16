@@ -1,12 +1,10 @@
 # gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 
-This repository contains the codes associated with the manuscript titled **"gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)"**, currently in revision with *Scientific Data*.
-
-Proper citation and DOI forthcoming.
+This repository contains the codes associated with the manuscript titled **"gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)"**, currently in revision with *Scientific Data*. Proper citation and DOI forthcoming.
 
 The gTREND-Nitrogen dataset provides a comprehensive, long-term (1930-2017) nitrogen (N) mass balance for the contiguous United States at a spatial resolution of 250 meters. This dataset integrates county-scale estimates of N fluxes with gridded land use and population data to estimate grid-scale surface fluxes of N, including fertilizer, atmospheric deposition, manure inputs, biological fixation, crop uptake, and population-based human waste.
 
-<img src="./Structure.svg" style="zoom:80%;" />
+<img src="./Structure.svg" style="zoom:60%;" />
 
 ## Primary Data Sources 
 
@@ -20,6 +18,18 @@ The gTREND-Nitrogen dataset provides a comprehensive, long-term (1930-2017) nitr
 We only provide TREND-N V3 and county shapefile in this repository. Other raw data and intermediate products available upon request.
 
 ## Methodology
+
+### Prerequisite
+
+This repository contains code written in both Python `(.py)` and MATLAB `(.m)`. 
+
+Regular Python files: Run with standard Python interpreter. Files prefixed with `QGIS-`: Must be executed through QGIS Python console to leverage QGIS toolbox. 
+
+Required Python packages for standard python files are: `geopandas`, `pandas`, `math`, `os`, `shutile`, `numpy`, `matplotlib`. 
+
+### Scripts
+
+
 
 
 
