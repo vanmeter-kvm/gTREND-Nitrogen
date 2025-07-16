@@ -13,10 +13,9 @@ The gTREND-Nitrogen dataset provides a comprehensive, long-term (1930-2017) nitr
 * **Land Cover Data**:
   - 30m National Land Cover Database (NLCD) (2006, 2008, 2011, 2013, 2016) – download from [MRLC](https://www.mrlc.gov/data).
   - 250m historical (1938–1992) and modern (1992–2005) land use and land cover data - download from [Sohl et al. 2018a](https://www.sciencebase.gov/catalog/item/59d3c73de4b05fe04cc3d1d1) and [Sohl et al. 2018b](https://www.sciencebase.gov/catalog/item/5b96c2f9e4b0702d0e826f6d). 
-* **Population Data**: 1km decadal population distributions (1930-2010) - download from ([Yu & Jawitz 2018](https://www.nature.com/articles/sdata201867).
+* **Population Data**: 1km decadal population distributions (1930-2010) - download from ([Yu & Jawitz 2018](https://www.nature.com/articles/sdata201867)).
 
-We only provide TREND-N V3 and county shapefile in this repository. Other raw data and intermediate products available upon request.
-
+We only provide the TREND-N V3 dataset and the county shapefile in this repository. Other raw data and intermediate products -primarily large raster files - are available upon request
 ## Methodology
 
 ### Prerequisite
@@ -25,7 +24,7 @@ This repository contains code written in both Python `(.py)` and MATLAB `(.m)`.
 
 Regular Python files: Run with standard Python interpreter. Files prefixed with `QGIS-`: Must be executed through QGIS Python console to leverage QGIS toolbox. 
 
-Required Python packages for standard python files are: `geopandas`, `pandas`, `math`, `os`, `shutile`, `numpy`, `matplotlib`. 
+Required Python packages for standard python files are: `geopandas`, `rasterstats`, `pandas`, `math`, `os`, `shutile`, `numpy`, `matplotlib`. 
 
 ### Scripts
 
