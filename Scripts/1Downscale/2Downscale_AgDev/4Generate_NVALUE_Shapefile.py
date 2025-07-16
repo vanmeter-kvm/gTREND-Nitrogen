@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 ###################################################################################################################
-# Generate county shapfiles which has normalzied county-scale values for the 15 agricultural and developed components
+#2.4 Generate county shapfiles which has normalzied county-scale values for the 14 agricultural and 1 developed components
 ###################################################################################################################
-"""
-#Input dataset:
-#(1). Finalzied normalized county-scale N fluxes (including agricultural and developed components) CSVs 
+'''
+Input dataset:
+(1). Finalzied normalized county-scale N fluxes (including agricultural and developed components) CSVs 
 
-#Processes:
-#(1). Attch the finalzied normalized county-scale N fluxes values to the CONUS county shapefile 
+Processes:
+(1). Attach the finalzied normalized county-scale N fluxes values to the CONUS county shapefile 
 
-#Output:
-#(1). CONUS county shapefile with finalzied normalized county-scale N fluxes values for 1930-2017
-
+Output:
+(1). CONUS county shapefile with finalzied normalized county-scale N fluxes values for 1930-2017
+'''
 import pandas as pd
 import geopandas as gpd
 import os 
@@ -39,9 +39,9 @@ def Nvalue_shapefile(Nvalue_path,Nvalue_shapefile_path):
     county_bd.to_file(Nvalue_shapefile_path)
 
 #sohl ag component
-path_sohl='./Data/TREND-N/Downscaled_csv/'
-save_path="./Data/TREND-N/N_LU_Shapefile/"
-
+path_sohl='./TREND-N/Downscaled_csv/'
+save_path="./TREND-N/N_LU_Shapefile/"
+os.chdir("./Data/")
 for file in os.listdir(path_sohl):
     if "finalized" in file :
         print(file)

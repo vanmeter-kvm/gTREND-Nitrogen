@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 ###################################################################################
-# Check inf values due to our downscaling assumption 
+#2.3 Check inf values due to our downscaling assumption 
 ###################################################################################
-"""
 
 
-#Input dataset:
-#(1). Normalized county-scale N fluxes (including agricultural and developed components) CSVs 
+'''
+Input dataset:
+(1). Normalized county-scale N fluxes (including agricultural and developed components) CSVs 
 
-#Processes:
-#(1). Identify the years during which the normalized N mass balance components contain invalid values (-inf, inf, NaN) due to the downscaling assumption. 
+Processes:
+(1). Identify the years during which the normalized N mass balance components contain invalid values (-inf, inf, NaN) due to the downscaling assumption. 
 
-#Output:
-#(1). Flagged invalid normalzied values for specific components under specific years
-
+Output:
+(1). Flagged invalid normalzied values for specific components under specific years
+'''
 
 import pandas as pd
 import numpy as np
 import math
 from shutil import copyfile
 import os 
-path="./Data/TREND-N/Downscaled_csv/"
+os.chdir("./Data/")
+path="./TREND-N/Downscaled_csv/"
 
 def get_inf_indx(path,file):
     file_path=path+file

@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 ###################################################################################################################
-# Rasterize CONUS county shapefile with finalzied normalized county-scale N fluxes values for 1930-2017
+#2.5 Rasterize CONUS county shapefile with finalzied normalized county-scale N fluxes values for 1930-2017
 ###################################################################################################################
-"""
+'''
+Input dataset:
+(1). CONUS county shapfiles which have normalized agricultural and developed N fluxes values from 1930 to 2017
 
-#Input dataset:
-#(1). CONUS county shapfiles which have normalized agricultural and developed N fluxes values from 1930 to 2017
+Processes:
+(1). Rasterize the shapefile to 250m grids based on the N fluxes values for each year for each component [QGIS Python API]
 
-#Processes:
-#(1). Rasterize the shapefile to 250m grids based on the N fluxes values for each year for each component 
-
-#Output:
-#(1). 250m grid-scale raster for the 14 agricultural components and 1 develoepd component for each year from 1930 to 2017
+Output:
+(1). 250m grid-scale raster for the 14 agricultural components and 1 develoepd component for each year from 1930 to 2017
+'''
 
 import processing
 import os
@@ -26,10 +26,11 @@ def rasterize_Nvalue(Nvalue_shapefile, rasterize_field, save_path,h,w):
     'EXTRA' : '', 'FIELD' : rasterize_field, 'HEIGHT' : h, 'INIT' : None, 
     'INPUT' : Nvalue_shapefile, 'INVERT' : False,  'NODATA' : 999999999, 
     'OPTIONS' : '', 'OUTPUT' : save_path, 'UNITS' : 1, 'WIDTH' : w })
-    
-#sohl ag
-sohl_shapefile_path="./Data/TREND-N/N_LU_Shapefile/"
-save_path='./Data/TREND-N/N_LU_rasterization/'
+
+
+os.chdir("./Data/")
+sohl_shapefile_path="./TREND-N/N_LU_Shapefile/"
+save_path='./TREND-N/N_LU_rasterization/'
 
 component=["CropUptake_Cropland","CropUptake_Pasture", "Fix_Cropland","Fix_Pasture", "Fertilizer_Agriculture",\
              "Lvst_DairyCattle","Lvst_BeefCattle","Lvst_Broilers", "Lvst_Equine","Lvst_Hogs","Lvst_LayersPullets",\

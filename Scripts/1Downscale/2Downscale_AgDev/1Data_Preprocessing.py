@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 ###################################################################################
-# County-scale TREND-Nitrogen data preprocessing 
+#2.1 Preprocess county-scale data
 ###################################################################################
-"""
 
-#Input dataset:
-# county-scale TREND-Nitrogen V3
+'''
+Input dataset:
+(1). county-scale TREND-Nitrogen V3
 
-#Processes:
-#(1). Convert county-scale N mass balance components in .txt to .csv
+Processes:
+(1). Convert county-scale N mass balance components in .txt to .csv
 
-
-#Output:
-#(1). county-scale N mass balance components in .csv format 
+Output:
+(1). county-scale N mass balance components in .csv format 
+'''
 
 import pandas as pd
 import os 
-
-n_path="./Data/TREND-N/"
-
+os.chdir("./Data/")
+n_path="./TREND-N/"
 
 for file in os.listdir(n_path):
     if ".txt" in file:

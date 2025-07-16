@@ -1,13 +1,24 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
-###################################################################################################################
-# Multiply binary land use image with rasterized normalized N fluxes 
-###################################################################################################################
-"""
+
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+##############################################################################################################
+#2.6 Multiply binary land use image with rasterized normalized N fluxes 
+##############################################################################################################
+
+'''
+Input dataset:
+(1). 250m grid-scale raster for the 14 agricultural components and 1 developed component for each year from 1930 to 2017
+(2). 250m binary land use raster
+
+Processes:
+(1). Raster multiplication: To appropriately assign agricultural N fluxes only to grid cells with agricultural land use, the county-scale flux values were multiplied by the 0 or 1 values in the binary land use grid; similarly, developed N fluxes were assigned only to grid cells with developed land use
+ [QGIS Python API]
+
+Output:
+(1). Downscaled N fluxes
+'''
 
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
-
 os.chdir("./Data/")
 
 def generate_binary_raster(binary_raster_path,N_input_path,condition,output_raster_path):
@@ -31,14 +42,13 @@ def generate_binary_raster(binary_raster_path,N_input_path,condition,output_rast
     rlayer2 .extent(), rlayer2 .width(), rlayer2.height() , entries )
     calc.processCalculation()
 condition='"binary@1"*"ninput@1"'
-component=["CropUptake_Cropland","CropUptake_Pasture", "Fix_Cropland","Fix_Pasture", "Fertilizer_Agriculture",\
-             "Lvst_DairyCattle","Lvst_BeefCattle","Lvst_Broilers", "Lvst_Equine","Lvst_Hogs","Lvst_LayersPullets",\
-                "Lvst_OtherCattle","Lvst_SheepGoat","Lvst_Turkeys" ]
+component=["CropUptake_Cropland","CropUptake_Pasture", "Fix_Cropland","Fix_Pasture", "Fertilizer_Agriculture",
+           "Lvst_DairyCattle","Lvst_BeefCattle","Lvst_Broilers","Lvst_Equine","Lvst_Hogs","Lvst_LayersPullets","Lvst_OtherCattle","Lvst_SheepGoat","Lvst_Turkeys"]
     
-bi_path_sohl="./Data/SOHL/SOHL_landcover_250m_binary_clipped/"
-bi_path_nlcd="./Data/NLCD/NLCD_landcover_250m_binary_clipped/"
-n_path='./Data/TREND-N/N_LU_rasterization/'
-save='./Data/gTREND-N/'
+bi_path_sohl="./SOHL/SOHL_landcover_250m_binary_clipped/"
+bi_path_nlcd="./NLCD/NLCD_landcover_250m_binary_clipped/"
+n_path='./TREND-N/N_LU_rasterization/'
+save='./gTREND-N/'
 
 for c in component_l:
     for i in range(1930,2017):

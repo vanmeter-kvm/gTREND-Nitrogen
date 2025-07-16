@@ -1,43 +1,37 @@
 # -*- coding: utf-8 -*-
-"""
-gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
+
+#gTREND-Nitrogen - Long-term nitrogen mass balance data for the contiguous United States (1930-2017)
 ###################################################################################
-#Normalize county-scale agrciultural N flux values by agricultural area
-#Normalize county-scale developed N flux values by developed area
+#2.2 Normalize county-scale agrciultural N flux values by agricultural area and normalize county-scale developed N flux values by developed area
 ###################################################################################
 
-"""
+'''
+Normalize county-scale agrciultural N flux values by agricultural area
 
-###################################################################################
-# Normalize county-scale agrciultural N flux values by agricultural area
-###################################################################################
-#Input dataset:
-#(1). 14 TREND-Nitrogen V3 county-scale agricultural component CSV:
-#       CropUptake_Cropland,CropUptake_Pasture, Fix_Cropland,Fix_Pasture, Fertilizer_Agriculture,
-#       Lvst_DairyCattle, Lvst_BeefCattle, Lvst_Broilers, Lvst_Equine, Lvst_Hogs, Lvst_LayersPullets,
-#       Lvst_OtherCattle,Lvst_SheepGoat, Lvst_Turkeys"
-#(2). County-Scale Agricultural Land Use Ratio CSV :
+Input dataset:
+(1). 14 TREND-Nitrogen V3 county-scale agricultural component CSV:
+CropUptake_Cropland,CropUptake_Pasture, Fix_Cropland,Fix_Pasture, Fertilizer_Agriculture,
+Lvst_DairyCattle, Lvst_BeefCattle, Lvst_Broilers, Lvst_Equine, Lvst_Hogs, Lvst_LayersPullets,
+Lvst_OtherCattle,Lvst_SheepGoat, Lvst_Turkeys"
+(2). County-Scale Agricultural Land Use Ratio CSV :
     
 #Processes:
-#(1). Normalize the county-scale nitrogen (N) flux values for each agricultural component by the agricultural area.
-#(2). If a county has zero agricultural land, set the normalized agricultural N fluxes for that county to zero, based on the assumption that downscaling is based on agricultural land use.
+(1). Normalize the county-scale nitrogen (N) flux values for each agricultural component by the agricultural area.
+(2). If a county has zero agricultural land, set the normalized agricultural N fluxes for that county to zero, based on the assumption that downscaling is based on agricultural land use.
 
 #Output:
-#(1). normalized county-scale agrciultural N flux for the 14 agricultural N components with zeroes filled for counties with no agricultural land
-#       component+_Agriculture_LU_finalized.csv
-#(2). normalized county-scale agrciultural N flux for the 14 agricultural N components
-#       component+_Agriculture_LU.csv
-
-
+(1). normalized county-scale agrciultural N flux for the 14 agricultural N components with zeroes filled for counties with no agricultural land
+component+_Agriculture_LU_finalized.csv
+'''
 
 import pandas as pd 
 import geopandas as gpd
 import os 
 import numpy as np
-
+os.chdir("./Data/")
 def N_value_kghaLU_sohl(LU_path,N_path,LU_name,LU_ratio,save_path,flag):
     n_value=pd.read_csv(N_path,index_col=0)
-    path_county='./Data/landuse/sohl/ag/sohl_binary_ag_1938.csv'
+    path_county='./landuse/sohl/ag/sohl_binary_ag_1938.csv'
     county_bd=pd.read_csv(path_county)
     n_value=n_value.reindex(county_bd['GEOID'].to_list())
     
@@ -64,9 +58,9 @@ def N_value_kghaLU_sohl(LU_path,N_path,LU_name,LU_ratio,save_path,flag):
 
     n_value_lu.to_csv(save_path)
 
-path="./Data/TREND-N/"
-LU_path='./Data/landuse/sohl/ag/'
-LU_nlcd_path='./Data/landuse/nlcd/ag/'
+path="./TREND-N/"
+LU_path='./landuse/sohl/ag/'
+LU_nlcd_path='./landuse/nlcd/ag/'
 
 component_l=["CropUptake_Cropland","CropUptake_Pasture", "Fix_Cropland","Fix_Pasture", "Fertilizer_Agriculture",\
              "Lvst_DairyCattle","Lvst_BeefCattle","Lvst_Broilers", "Lvst_Equine","Lvst_Hogs","Lvst_LayersPullets",\
@@ -87,29 +81,26 @@ for component in component_l:
         
         
 #%%
-###################################################################################
-# Normalize county-scale developed N flux values by developed area
-###################################################################################
+'''
+Normalize county-scale developed N flux values by developed area
 
-#Input dataset:
-#(1). 14 TREND-Nitrogen V3 county-scale developed component CSV:
-#       Fertilizer_Domestic
-#(2). County-Scale Developed Land Use Ratio CSV :
+Input dataset:
+(1). 1 TREND-Nitrogen V3 county-scale developed component CSV:
+Fertilizer_Domestic
+(2). County-Scale developed Land Use Ratio CSV :
     
-#Processes:
-#(1). Normalize the county-scale nitrogen (N) flux values for each agricultural component by the developed area.
-#(2). If a county has zero developed land, set the normalized developed N fluxes for that county to zero, based on the assumption that downscaling is based on developed land use.
+Processes:
+(1). Normalize the county-scale nitrogen (N) flux values for each developed component by the developed area.
+(2). If a county has zero developed land, set the normalized developed N fluxes for that county to zero, based on the assumption that downscaling is based on developed land use
 
-#Output:
-#(1). normalized county-scale developed N flux for the 1 developed N components with zeroes filled for counties with no developed land
-#       component+_Domestic_LU_finalized.csv
-#(2). normalized county-scale developed N flux for the 14 agricultural N components
-#       component+_Domestic_LU.csv        
+Output:
+(1).  normalized county-scale developed N flux for the 1 developed N components with zeroes filled for counties with no developed land
+component+_Domestic_LU_finalized.csv
+'''
         
-        
-path="./Data/TREND-N/"
-LU_path='./Data/landuse/sohl/dev/'
-LU_nlcd_path='./Data/landuse/nlcd/dev/' 
+path="./TREND-N/"
+LU_path='./landuse/sohl/dev/'
+LU_nlcd_path='./landuse/nlcd/dev/' 
         
         
 component_l=['Fertilizer_Domestic']
