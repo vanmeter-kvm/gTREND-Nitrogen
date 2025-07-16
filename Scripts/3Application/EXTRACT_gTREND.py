@@ -23,7 +23,9 @@ wshd_path=
 
 #gTREND-N raster path
 gtrend_path=
+
+#define column name
 var=
 
-#A dataframe stores the aggregated N values
+#export a dataframe stores the aggregated N values
 df_wshd=extract_wshd_stats(wshd_path, gtrend_path,var)
