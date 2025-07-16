@@ -59,7 +59,7 @@ Required Python packages for standard python files are: `geopandas`, `rasterstat
 
   * `Figure6.py` : Compare county-scale TREND-N v3.0 and the gridded gTREND-N which was re-aggregated to the county scale, to QAQC the downsclaing processes
 
-* **Extract basin-averaged N fluxes based on gTREND-N **
+* **Extract basin-averaged N fluxes based on gTREND-N**
 
   -`/Scripts/3Application/`
 
