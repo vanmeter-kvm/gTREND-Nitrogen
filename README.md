@@ -32,31 +32,32 @@ Required Python packages for standard python files are: `geopandas`, `rasterstat
 
   -`Scripts/1Downscale/1Develop_LU/`
 
-  * `1QGIS-LU.py`: Resample NLCD to 250m, calculate county agricultural/developed land use ratios, generate binary rasters (ag/non-ag, developed/non-developed)。
-
+  * `1QGIS-LU.py`: Resample NLCD to 250m, calculate county agricultural/developed land use ratios, generate binary rasters (ag/non-ag, developed/non-developed)
+  * `2LU_ratio.py`: Generate county-scale ag and developed land use percentage
+  
   -`Scripts/1Downscale/2Downscale_AgDev/`
 
   * `1Data_Preprocessing.py`: Convert .txt to .csv for further analysis
-  * `2Calculate_Nvalue_LU.py`: Calculate：（1）Nag,county (kg/ha-agland) for agricultural N fluxes； （2）Ndev,county (kg/ha-devland) for non-ag fertilizer
+  * `2Calculate_Nvalue_LU.py`: County-scale N flux values normalized by agricultural or developed area：（1）Nag,county (kg/ha-agland) for agricultural N fluxes； （2）Ndev,county (kg/ha-devland) for non-ag fertilizer
   * `3Check_Inf_Values.py`:  Validate TREND-N V3 vs land use 
-  * `4Generate_NVALUE_Shapefile.py`: Generate county-scale vector maps 
-  * `5QGIS-Generate_NVALUE_Raster.py`: Rasterize those shapefiles to a 250-m grid scale. 
+  * `4Generate_NVALUE_Shapefile.py`: Generate county shapfiles which has normalzied county-scale values for the 14 agricultural and 1 developed components 
+  * `5QGIS-Generate_NVALUE_Raster.py`: Rasterize those shapefiles to a 250-m grid scale
   * `6QGIS-Generate_Nvalue_raster_with_binary.py`: Spatial allocation: （1） Agricultural N → ag land cells only；（2）Developed N → developed land cells only
 
   -`/Scripts/1Downscale/3Downscale_Humanwaste/`
 
   * `1QGIS-POP_WARP.py`: Convert .adf to .tif
   * `2QGIS-POP_CLIP.py`: Clip population raster to county shapefile 
-  * `3Matlab-POPInterpolation.m`: Decadal population was linearly interpolated to obtain annual estimates of population. 
-  * `4Matlab-POP_CONVERT_TO_KGHA.m`: convert population pop/km2 to kg-N/ha
+  * `3Matlab-POPInterpolation.m`: Decadal population was linearly interpolated to obtain annual estimates of population
+  * `4Matlab-POP_CONVERT_TO_KGHA.m`: Convert population pop/km2 to kg-N/ha
   * `5QGIS-WARP_TO_250M.py`: Resample 1km to 250m
-  * `6Matlab- POP_FIX_GEOMETRY.m`: Geometry correction
+
 
 * **Technical validation**
 
   -`/Scripts/2Validation/`
 
-  * `Figure6.py` : Compare county-scale TREND-Nitrogen v3.0 and the gridded gTREND-N, re-aggregated to the county scale
+  * `Figure6.py` : Compare county-scale TREND-N v3.0 and the gridded gTREND-N which was re-aggregated to the county scale, to QAQC the downsclaing processes
 
 * **Extract basin-averaged N fluxes based on gTREND-N **
 
